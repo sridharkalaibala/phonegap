@@ -1,59 +1,35 @@
-Profile Life
-============
+## HACK
 
-Github profile page hack to display a glider moving across my contribution
-timeline.
+For your Public Contributions chart on GitHub.
 
-![Example graph](assets/timeline.png)
+### [Demo](https://github.com/public-contributions)
 
-Inspired by https://github.com/will/githubprofilecheat2
+#### Screenshot
 
-WTF?
-====
+![](https://raw.github.com/public-contributions/HACK/master/hack.png)
 
-GitHub has a neat display of historical activity on each user's profile page.
-This 53x7 grid shows the number of commits and other GitHub interactions that
-the user performed on each day for the last year. Each cell in the graph is
-shaded with one of 5 possible colors. These colors correspond to the quartiles
-of the normal distribution over the range `[0, max(v)]` where `v` is (issues
-opened + pull requests proposed + commits authored) per day.
+#### How To Do This HACK
 
-If your all time high for the last year was 100 contributions in a single day,
-the cells would color like this:
+1. Create a new GitHub user (Ex: `example-user`). (I did this in a Chrome Ingognito browser so I didn't have to log out of my real user.)
+1. Create a repo for that user (Ex: `example-repo`).
+1. Create an empty folder on your computer.
+1. Add [dates.txt](https://github.com/public-contributions/HACK/blob/master/dates/dates.txt) to that folder and modify with the dates you want to "draw" to your Public Contributions chart.
+1. Add [dates.sh](https://github.com/public-contributions/HACK/blob/master/dates/dates.sh) to that folder and change `--author="public-contributions"` (Ex: `--author="example-user"`).
+1. Open a terminal window and `cd` to your folder (which now has `dates.txt` and `dates.sh` in it).
+1. Run `git init` to initialize the Git repo.
+1. Run `./dates.sh`. (You may need to run `chmod +x dates.sh` first depending on how you created the file.)
+1. Add the remote git origin. (Ex: `git remote add origin git@github.com:example-user/example-repo.git`.)
+1. Run `git push`.
+1. Visit your user page to see the chart. (Ex: `http://github.com/example-user`.)
 
-| Contributions   | Color                         |
-| :-------------- | :---------------------------- |
-| 0               | ![#eeeeee](assets/eeeeee.png) |
-| 1  - 24         | ![#d6e685](assets/d6e685.png) |
-| 25 - 49         | ![#8cc665](assets/8cc665.png) |
-| 50 - 74         | ![#44a340](assets/44a340.png) |
-| 75+             | ![#1e6823](assets/1e6823.png) |
+#### [Share a screenshot of your HACK](https://github.com/public-contributions/HACK/issues/1)
 
-This script will create a commit history in a repository to "game" this graph
-to display a user specified pattern.
+#### License
 
-Currently the patterns generated are fairly simple. The script reads a file in
-the form of a [plaintext Life file][] and outputs a list of shell commands
-that will populate a git repository with 23 empty commits for the day
-corresponding with a cell that is populated with an `O` character.
+[License](https://github.com/public-contributions/HACK/blob/master/LICENSE)
 
-Usage
-=====
+#### Credits
 
-    $ ./bin/pattern-to-commits.sh patterns/glider.cells 2012-04-15 | sh
-    $ git push
+Made by Adam Schwartz
 
-
-Notes
-=====
-On Apple OS X or other BSD boxen, you'll need to have a copy of GNU date
-available to do the date formatting. You can tell the script to use
-a different `date` binary by setting the `DATE_PGRM` environment variable.
-
-On OS X this can be accomplished by installing the `coreutils` package:
-
-    $ brew install coreutils
-    $ DATE_PRGM=gdate ./bin/pattern-to-commits.sh ...
-
-
-[plaintext Life file]: http://www.conwaylife.com/wiki/Plaintext
+[GitHub](https://github.com/adamschwartz) &nbsp; &nbsp; [Twitter](https://twitter.com/adamfschwartz)
